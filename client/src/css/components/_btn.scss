@@ -1,0 +1,59 @@
+.btn {
+	font: inherit;
+	color: $color-dark;
+	border: 1px solid transparent;
+	background-color: transparent;
+	outline: none;
+	padding: 0.5rem 0.75em;
+	border-radius: $border-radius;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+
+	&__icon {
+		display: inline-block;
+		width: 1rem;
+		margin-right: $icon-margin;
+	}
+
+	&--primary {
+		background-color: $color-primary;
+		border-color: $color-primary;
+
+		&:hover {
+			background-color: $color-light;
+			border-color: $color-light;
+		}
+	}
+
+	&--secondary {
+		border-color: $color-light;
+		color: $color-light;
+
+		&:hover {
+			background-color: $color-light;
+			color: $color-dark;
+		}
+	}
+
+	&--outline {
+		border-color: $color-primary;
+		color: $color-primary;
+
+		&:hover {
+			background-color: $color-primary;
+			color: $color-dark;
+		}
+	}
+
+	&--danger {
+		border-color: $color-error;
+		color: $color-error;
+
+		&:hover {
+			background-color: $color-error;
+			color: $color-light;
+		}
+	}
+}

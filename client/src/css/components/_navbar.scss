@@ -1,0 +1,106 @@
+.navbar {
+	background-color: $color-dark;
+	position: relative;
+
+	&__logo,
+	&__link {
+		display: inline-block;
+		text-decoration: none;
+		padding: 1.5em 1em;
+	}
+
+	&__logo {
+		color: $color-primary;
+		font-weight: bold;
+		padding-left: 0;
+		padding-right: 0;
+		display: flex;
+		align-items: center;
+	}
+
+	&__icon {
+		display: inline-block;
+		width: 1.5rem;
+		margin-right: $icon-margin;
+	}
+
+	&__nav {
+		list-style: none;
+		display: none;
+
+		&--mobile {
+			list-style: none;
+			display: block;
+		}
+	}
+
+	&__mobile {
+		position: fixed;
+		top: 0;
+		right: 0;
+		background-color: $color-dark-2;
+		padding-top: 2em;
+		width: 45%;
+		height: 100%;
+		z-index: 9999;
+		text-align: right;
+		transition: all 0.3s ease-in-out;
+
+		&--hide {
+			transform: translateX(100%);
+			opacity: 0;
+		}
+	}
+
+	&__toggle {
+		background-color: transparent;
+		border: 0;
+		outline: none;
+
+		img {
+			width: 40px;
+			cursor: pointer;
+		}
+	}
+
+	&__link {
+		color: $color-light;
+		transition: color 0.5s ease-in-out;
+
+		&:hover,
+		&--active {
+			color: $color-primary;
+		}
+
+		&--mobile {
+			display: block;
+			padding: 2em 0;
+			padding-right: 2em;
+		}
+	}
+
+	&__dismiss {
+		background-color: transparent;
+		outline: none;
+		border: 0;
+		color: $color-light;
+		font: inherit;
+		display: block;
+		margin-left: auto;
+		margin-bottom: 1em;
+		margin-right: 2em;
+		color: lighten($color-dark-2, 50%);
+		cursor: pointer;
+	}
+
+	@media only screen and (min-width: $medium) {
+		&__nav {
+			display: flex;
+		}
+
+		&__toggle,
+		&__mobile {
+			display: none;
+		}
+	}
+}

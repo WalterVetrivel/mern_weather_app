@@ -1,0 +1,32 @@
+.help {
+	padding: 2em 0;
+
+	&__list {
+		list-style-position: inside;
+
+		li {
+			margin-bottom: 0.5rem;
+		}
+	}
+
+	@media only screen and (min-width: $large) {
+		&__list {
+			width: 80%;
+			margin: 0 auto;
+		}
+	}
+}
+
+.faq {
+	padding: 2em 0;
+
+	&__question {
+		color: $color-primary;
+		margin-bottom: 0.5rem;
+		font-size: 1.05em;
+	}
+
+	&__answer:not(:last-of-type) {
+		margin-bottom: 1rem;
+	}
+}

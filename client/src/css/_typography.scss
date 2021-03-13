@@ -1,0 +1,63 @@
+.heading {
+	font-family: $title-font;
+
+	&--main {
+		font-size: 1.75em;
+		margin-bottom: 2rem;
+		text-align: center;
+		color: lighten($color-light, 20%);
+
+		&::after {
+			content: '';
+			display: block;
+			height: 4px;
+			width: 80px;
+			margin: 0 auto;
+			background-color: $color-primary;
+		}
+	}
+
+	@media only screen and (min-width: $medium) {
+		font-size: 2em;
+	}
+}
+
+.text {
+	color: lighten($color-dark-2, 70%);
+
+	&__icon {
+		display: inline-block;
+		width: 1rem;
+		margin-right: $icon-margin;
+	}
+
+	&--primary {
+		color: $color-primary;
+	}
+
+	&--error {
+		color: $color-error;
+	}
+
+	&--center {
+		text-align: center;
+	}
+}
+
+.link {
+	color: $color-primary;
+	text-decoration: none;
+	transition: color 0.3s ease-in-out;
+
+	&:hover {
+		color: lighten($color-primary, 10%);
+	}
+
+	&--alt {
+		color: $color-secondary;
+
+		&:hover {
+			color: lighten($color-secondary, 10%);
+		}
+	}
+}

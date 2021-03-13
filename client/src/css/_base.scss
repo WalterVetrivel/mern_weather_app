@@ -1,0 +1,85 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: $body-font;
+	color: $color-light;
+	background-color: $color-dark-2;
+	line-height: 1.6;
+	position: relative;
+	background-image: repeating-linear-gradient(
+			90deg,
+			hsla(240, 0%, 35%, 0.05) 0px,
+			hsla(240, 0%, 35%, 0.05) 1px,
+			transparent 1px,
+			transparent 91px
+		),
+		repeating-linear-gradient(
+			45deg,
+			hsla(240, 0%, 35%, 0.05) 0px,
+			hsla(240, 0%, 35%, 0.05) 1px,
+			transparent 1px,
+			transparent 91px
+		),
+		repeating-linear-gradient(
+			0deg,
+			hsla(240, 0%, 35%, 0.05) 0px,
+			hsla(240, 0%, 35%, 0.05) 1px,
+			transparent 1px,
+			transparent 61px
+		),
+		repeating-linear-gradient(
+			90deg,
+			hsla(240, 0%, 35%, 0.05) 0px,
+			hsla(240, 0%, 35%, 0.05) 1px,
+			transparent 1px,
+			transparent 61px
+		),
+		repeating-linear-gradient(
+			90deg,
+			hsla(240, 0%, 35%, 0.05) 0px,
+			hsla(240, 0%, 35%, 0.05) 1px,
+			transparent 1px,
+			transparent 16px
+		),
+		repeating-linear-gradient(
+			0deg,
+			hsla(240, 0%, 35%, 0.05) 0px,
+			hsla(240, 0%, 35%, 0.05) 1px,
+			transparent 1px,
+			transparent 16px
+		),
+		linear-gradient(90deg, rgb(23, 23, 23), rgb(23, 23, 23));
+}
+
+.body {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	min-height: 100vh;
+
+	&__content {
+		flex-grow: 1;
+	}
+}
+
+.content {
+	margin-left: 20%;
+}
+
+@media only screen and (min-width: $large) {
+	html,
+	body {
+		font-size: 17px;
+	}
+}
+
+@media only screen and (min-width: $very-large) {
+	html,
+	body {
+		font-size: 18px;
+	}
+}

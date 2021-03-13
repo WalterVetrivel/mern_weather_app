@@ -1,0 +1,17 @@
+.sidebar {
+	position: fixed;
+	z-index: 999;
+	background-color: $color-dark-2;
+	padding: 2rem;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 100vh;
+	width: 20%;
+
+	&__heading,
+	&__text {
+		margin-bottom: 1rem;
+	}
+}
