@@ -2,6 +2,12 @@
 	width: 95%;
 	margin: auto;
 
+	&--home {
+		margin-left: 20%;
+		padding: 2.5rem;
+		margin-top: 2rem;
+	}
+
 	&--flex {
 		width: 95%;
 		margin: auto;
@@ -33,6 +39,22 @@
 	}
 }
 
+.flex {
+	display: flex;
+
+	&--reverse {
+		flex-direction: row-reverse;
+	}
+}
+
+.inline-block {
+	display: inline-block;
+}
+
+.block {
+	display: block;
+}
+
 .hidden {
 	display: none;
 }
@@ -43,6 +65,22 @@
 
 .mb-2 {
 	margin-bottom: 1rem;
+}
+
+.ml-1 {
+	margin-left: 0.5rem;
+}
+
+.ml-2 {
+	margin-left: 1rem;
+}
+
+.mr-1 {
+	margin-right: 0.5rem;
+}
+
+.mr-2 {
+	margin-right: 1rem;
 }
 
 .mt-1 {

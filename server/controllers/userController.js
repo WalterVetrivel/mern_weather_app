@@ -9,6 +9,7 @@ exports.register = async (req, res) => {
 		const hasErrors = !validationResult(req).isEmpty();
 		if (hasErrors) throw new Error('Please provide a valid email and password');
 
+		const name = req.body.name;
 		const email = req.body.email;
 		const password = req.body.password;
 
@@ -18,26 +19,31 @@ exports.register = async (req, res) => {
 		if (userExists) throw new Error('Email already exists.');
 
 		const user = new User({
+			name,
 			email,
 			password: hashedPassword,
 		});
 
-		user.save();
+		await user.save();
+		const authToken = jwt.sign(
+			{ id: user._id, email: user.email },
+			process.env.JWT_SECRET
+		);
 
 		res.status(201).json({
 			statusCode: 201,
 			message: 'Success',
-			user: { id: user._id, email: user.email },
+			authToken,
 		});
 	} catch (err) {
-		res.status(500).json({ statusCode: 500, message: err.message });
+		res.status(422).json({ statusCode: 422, message: err.message });
 	}
 };
 
 exports.login = async (req, res) => {
 	try {
 		const hasErrors = !validationResult(req).isEmpty();
-		if (hasErrors) throw new Error('Login failed');
+		if (hasErrors) throw new Error('Invalid email or password.');
 
 		const email = req.body.email;
 		const password = req.body.password;
@@ -56,6 +62,7 @@ exports.login = async (req, res) => {
 				statusCode: 200,
 				message: 'Success',
 				authToken,
+				name: user.name,
 			});
 		}
 	} catch (err) {

@@ -1,6 +1,14 @@
 .navbar {
 	background-color: $color-dark;
-	position: relative;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 2.5rem;
 
 	&__logo,
 	&__link {
@@ -96,6 +104,11 @@
 	@media only screen and (min-width: $medium) {
 		&__nav {
 			display: flex;
+			align-items: center;
+		}
+
+		&__item {
+			padding: 0.25rem;
 		}
 
 		&__toggle,

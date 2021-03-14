@@ -1,15 +1,15 @@
 import React from 'react';
 
-import SunnyIcon from '../img/icons/sun.svg';
-import CloudyIcon from '../img/icons/cloudy.svg';
-import CloudsIcon from '../img/icons/clouds.svg';
-import RainIcon from '../img/icons/rain.svg';
-import SnowIcon from '../img/icons/snowflake.svg';
-import ThunderIcon from '../img/icons/bolt.svg';
-import HailIcon from '../img/icons/hail.svg';
-import WindIcon from '../img/icons/wind.svg';
-import LoadingIcon from '../img/icons/loading.svg';
-import ErrorIcon from '../img/icons/error.svg';
+import SunnyIcon from '../../img/icons/sun.svg';
+import CloudyIcon from '../../img/icons/cloudy.svg';
+import CloudsIcon from '../../img/icons/clouds.svg';
+import RainIcon from '../../img/icons/rain.svg';
+import SnowIcon from '../../img/icons/snowflake.svg';
+import ThunderIcon from '../../img/icons/bolt.svg';
+import HailIcon from '../../img/icons/hail.svg';
+import WindIcon from '../../img/icons/wind.svg';
+import LoadingIcon from '../../img/icons/loading.svg';
+import ErrorIcon from '../../img/icons/error.svg';
 
 const WeatherIcon = ({ status, className }) => {
 	let icon = null;

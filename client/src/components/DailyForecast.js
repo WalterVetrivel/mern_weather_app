@@ -2,7 +2,7 @@ import React from 'react';
 
 import MinIcon from '../img/icons/min.svg';
 import MaxIcon from '../img/icons/max.svg';
-import WeatherIcon from './WeatherIcon';
+import WeatherIcon from './ui/WeatherIcon';
 
 import { getPrintableDateTime } from '../utils/getPrintableDateTime';
 

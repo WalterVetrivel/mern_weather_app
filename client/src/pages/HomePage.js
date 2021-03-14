@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 // Importing components
+import Sidebar from '../components/layout/Sidebar';
 import CurrentWeather from '../components/CurrentWeather';
 import LocationForm from '../components/LocationForm';
 import HourlyForecast from '../components/HourlyForecast';
 import DailyForecast from '../components/DailyForecast';
 
 // HomePage Component
-const HomePage = () => {
+const HomePage = ({ isAuth }) => {
 	// Initial weather data
 	const initWeather = {
 		location: '',
@@ -68,6 +69,30 @@ const HomePage = () => {
 		setLocation(e.target.value);
 	};
 
+	// To handle locations selected on sidebar
+	const onSelectLocation = async e => {
+		setLoadingState();
+
+		if (location.trim() === '') {
+			setLocationIsEmpty(true);
+			return;
+		}
+
+		try {
+			// Need to pass e.target.innerText instead of location since location is not updated till next render, but if it is passed, the previous value will be passed, which will overwrite the new value due to setData called after the response
+
+			const res = await axios.get(
+				`http://localhost:8000/weather?address=${encodeURIComponent(
+					e.target.innerText
+				)}`
+			);
+
+			setData(res.data);
+		} catch (err) {
+			setErrorState();
+		}
+	};
+
 	// Functions to get weather information
 	// Function to get the weather details based on IP
 	const getWeatherByIp = async () => {
@@ -87,7 +112,8 @@ const HomePage = () => {
 
 	// Function to get the weather information based on address/location entered
 	const getWeatherByAddress = async e => {
-		e.preventDefault();
+		if (e) e.preventDefault();
+
 		setLoadingState();
 
 		if (location.trim() === '') {
@@ -136,49 +162,57 @@ const HomePage = () => {
 	// Component JSX code
 	return (
 		<>
-			<div className='home'>
-				<LocationForm
-					location={location}
-					locationChange={onChangeLocation}
-					onSubmit={getWeatherByAddress}
-					locationIsEmpty={locationIsEmpty}
-					onCurrentLocation={getWeatherByGeolocation}
-				/>
-				<CurrentWeather
-					loading={loading}
-					error={error}
-					weather={weather.current}
-				/>
-			</div>
+			<div className='flex'>
+				<Sidebar isAuth={isAuth} selectLocation={onSelectLocation} />
 
-			<div className='hourly'>
-				<h1 className='heading heading--main'>Next 5 hours</h1>
-				{weather.hourly.length > 0 ? (
-					<div className='hourly__grid'>
-						{weather.hourly.map((h, index) => (
-							<HourlyForecast key={index} forecast={h} />
-						))}
+				<div className='container container--home'>
+					<div className='home'>
+						<LocationForm
+							location={location}
+							locationChange={onChangeLocation}
+							onSubmit={getWeatherByAddress}
+							locationIsEmpty={locationIsEmpty}
+							onCurrentLocation={getWeatherByGeolocation}
+						/>
+						<CurrentWeather
+							loading={loading}
+							error={error}
+							weather={weather.current}
+						/>
 					</div>
-				) : (
-					<p className='text--center'>
-						Forecast of next 5 hours will be displayed here.
-					</p>
-				)}
-			</div>
 
-			<div className='daily'>
-				<h1 className='heading heading--main'>Next 7 days</h1>
-				{weather.daily.length > 0 ? (
-					<div className='daily__grid'>
-						{weather.daily.map((d, index) => (
-							<DailyForecast key={index} forecast={d} />
-						))}
+					{/* Display Hourly Weather Forecast */}
+					<div className='hourly'>
+						<h1 className='heading heading--main'>Next 5 hours</h1>
+						{weather.hourly.length > 0 ? (
+							<div className='hourly__grid'>
+								{weather.hourly.map((h, index) => (
+									<HourlyForecast key={index} forecast={h} />
+								))}
+							</div>
+						) : (
+							<p className='text--center'>
+								Forecast of next 5 hours will be displayed here.
+							</p>
+						)}
 					</div>
-				) : (
-					<p className='text--center'>
-						Forecast of next 7 days will be displayed here.
-					</p>
-				)}
+
+					{/* Display Daily Weather Forecast */}
+					<div className='daily'>
+						<h1 className='heading heading--main'>Next 7 days</h1>
+						{weather.daily.length > 0 ? (
+							<div className='daily__grid'>
+								{weather.daily.map((d, index) => (
+									<DailyForecast key={index} forecast={d} />
+								))}
+							</div>
+						) : (
+							<p className='text--center'>
+								Forecast of next 7 days will be displayed here.
+							</p>
+						)}
+					</div>
+				</div>
 			</div>
 		</>
 	);

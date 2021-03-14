@@ -1,7 +1,7 @@
 import React from 'react';
 
 import TempIcon from '../img/icons/temp.svg';
-import WeatherIcon from './WeatherIcon';
+import WeatherIcon from './ui/WeatherIcon';
 
 import { getPrintableDateTime } from '../utils/getPrintableDateTime';
 
