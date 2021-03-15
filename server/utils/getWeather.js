@@ -1,9 +1,11 @@
 const axios = require('axios');
 
+// Helper function to convert celsius to fahrenheit
 const celsiusToFahrenheit = tempC => {
 	return Math.round(tempC * (9 / 5) + 32);
 };
 
+// Helper function to extract the required information from the weather API response
 const constructWeatherObject = weather => {
 	return {
 		dateTime: new Date(weather.dt * 1000),
@@ -30,6 +32,7 @@ const constructWeatherObject = weather => {
 	};
 };
 
+// Function to get the weather information based on coordinates
 exports.getWeather = async (lon, lat) => {
 	try {
 		const response = await axios.get(
@@ -38,6 +41,7 @@ exports.getWeather = async (lon, lat) => {
 
 		const weatherData = response.data;
 
+		// Constructing a response object that has current weather, forecast for the next 5 hours and the next 7 days
 		const weather = {
 			current: constructWeatherObject(weatherData.current),
 			hourly: weatherData.hourly

@@ -1,5 +1,6 @@
 const axios = require('axios');
 
+// Function to get the latitude and longitude from a given address
 exports.getCoordinates = async address => {
 	try {
 		const response = await axios.get(
@@ -17,6 +18,7 @@ exports.getCoordinates = async address => {
 	}
 };
 
+// Function to get the city and region from the coordinates
 exports.getLocationFromCoordinates = async (lat, lon) => {
 	try {
 		const response = await axios.get(
@@ -34,6 +36,7 @@ exports.getLocationFromCoordinates = async (lat, lon) => {
 	}
 };
 
+// Function to get the coordinates from an IP address
 exports.getCoordinatesFromIp = async ip => {
 	try {
 		const response = await axios.get(

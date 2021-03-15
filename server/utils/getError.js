@@ -1,3 +1,4 @@
+// Function to get appropriate error message based on what went wrong
 exports.getError = msg => {
 	if (msg === 'data')
 		return {

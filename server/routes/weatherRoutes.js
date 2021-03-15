@@ -4,6 +4,7 @@ const { getWeather } = require('../controllers/weatherController');
 
 const router = express.Router();
 
+// Using express-validator to ensure that the proper data is passed along with the request
 router.get(
 	'/',
 	oneOf([

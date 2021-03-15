@@ -19,6 +19,7 @@ const App = () => {
 		confirmPassword: '',
 	};
 
+	// State management
 	const [showLogin, setShowLogin] = useState(false);
 	const [loginDetails, setLoginDetails] = useState(initLoginDetails);
 	const [showRegister, setShowRegister] = useState(false);
@@ -28,6 +29,7 @@ const App = () => {
 
 	const [auth, setAuth] = useState({ isAuth: false, authToken: null });
 
+	// Checking whether the user is logged in by looking at the authToken in the localStorage upon page load
 	useEffect(() => {
 		const isAuth = localStorage.getItem('isAuth');
 		if (isAuth === 'true') {
@@ -65,6 +67,7 @@ const App = () => {
 
 			setAuth({ isAuth: true, authToken: res.data.authToken });
 
+			// Store the auth token and name in the localStorage of browser to avoid getting logged out upon page refresh
 			localStorage.setItem('isAuth', 'true');
 			localStorage.setItem('authToken', res.data.authToken);
 			localStorage.setItem('name', res.data.name);
@@ -95,6 +98,7 @@ const App = () => {
 
 	const registerDetailsChange = e => {
 		const newRegisterDetails = { ...registerDetails };
+		// The form element's name attribute must be the same as the value of the corresponding field on the newRegisterDetails object, otherwise, the following will simply create a new field and won't have the expected result
 		newRegisterDetails[e.target.name] = e.target.value;
 		setRegisterDetails(newRegisterDetails);
 	};
@@ -109,6 +113,7 @@ const App = () => {
 
 			setAuth({ isAuth: true, authToken: res.data.authToken });
 
+			// Store the auth token and name in the localStorage of browser to avoid getting logged out upon page refresh
 			localStorage.setItem('isAuth', 'true');
 			localStorage.setItem('authToken', res.data.authToken);
 			localStorage.setItem('name', registerDetails.name);
@@ -122,6 +127,7 @@ const App = () => {
 	return (
 		<div className='body__content'>
 			<Router>
+				{/* Conditionally show the login/register forms based on whether user clicks login/register */}
 				{showLogin ? (
 					<Login
 						onDismiss={hideLoginForm}
@@ -149,6 +155,7 @@ const App = () => {
 					/>
 
 					<section className='main'>
+						{/* Routing */}
 						<Switch>
 							<Route path='/about'>
 								<AboutPage />

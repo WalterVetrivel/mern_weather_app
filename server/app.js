@@ -2,8 +2,10 @@
 const express = require('express');
 const cors = require('cors');
 
+// dotenv helps us access environment variables that are used to store sensive information like API keys
 require('dotenv').config();
 
+// Import routes
 const weatherRouter = require('./routes/weatherRoutes');
 const authRouter = require('./routes/authRoutes');
 const locationRouter = require('./routes/locationRoutes');
